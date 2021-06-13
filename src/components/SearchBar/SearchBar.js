@@ -1,20 +1,11 @@
 import React, { useContext, useState } from 'react';
-import styled from 'styled-components';
-import Card from './Card';
-import { CollectionContext } from './CollectionContext';
-
-const StyledSearch = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-gap: 1rem;
-  padding: 1rem;
-`;
+import Card from '../Card/Card';
+import { CollectionContext } from '../../contexts/CollectionContext';
+import { StyledSearch } from './style';
 
 function SearchBar() {
   const [search, setSearch] = useState('');
   const { coughtlist, notcoughtlist } = useContext(CollectionContext);
-
   const [showall, setShowall] = useState(false);
 
   const handleClick = () => {
@@ -40,35 +31,39 @@ function SearchBar() {
   });
 
   return (
-    <>
-      <button onClick={handleClick}>show all</button>
-      <input
-        type="text"
-        placeholder="search..."
-        onChange={(event) => {
-          setSearch(event.target.value);
-        }}
-      />
-      <StyledSearch>
+    <StyledSearch>
+      <div className="topcollection">
+        <input
+          className="searchinput"
+          type="text"
+          placeholder="Search..."
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
+        <button className="unlockbutton" onClick={handleClick}>
+          Unlock all
+        </button>
+      </div>
+
+      <div className="botcollection">
         {filteredcoughtlist.map((pokemon, index) => {
           return (
             <Card
               key={index}
               image={pokemon.sprites.other.dream_world.front_default}
+              show={true}
+              name={pokemon.name}
+              ability={pokemon.abilities[0].ability.name}
             />
           );
         })}
+
         {filterednotcoughtlist.map((pokemon, index) => {
-          return (
-            <Card
-              show={showall ? 'cought' : 'notcought'}
-              key={index}
-              image={pokemon.sprites.other.dream_world.front_default}
-            />
-          );
+          return <Card show={showall} key={index} />;
         })}
-      </StyledSearch>
-    </>
+      </div>
+    </StyledSearch>
   );
 }
 
