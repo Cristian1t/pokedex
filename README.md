@@ -1,5 +1,7 @@
 # Pokédex - React + styled-components
 
+## Deployed @ https://pokemoncatchreact.netlify.app/
+
 - How it works:
 
   - Click on "Catch 'em all" button to start catching pokémons.
@@ -11,7 +13,7 @@
   - On load, the pokémon list is fetched from the API, and for each pokémon (url) its details are fetched and added one by one to the Provider (useContext) into the "notcought" state.
   - On home screen, pressing the "Catch'em all" button, a random pokémon from "notcought" is selected using splice method and displayed.
   - Clicking the "Catch" button, adds the selected pokémon to the "cought" state in Provider.
-  - In Collection, the Search component maps through and shows both the "cought" and "notcought" states when search-input is empty
+  - In Collection, the Search component maps through and shows both the "cought" and "notcought" states when search-input is empty.
   - When you type in search it filters both states.
   - Clicking on "Unlock all" button, sets the "showall" state to true, causing Card component to display card info.
   - Clicking on anycard opens up a Modal component.
@@ -21,4 +23,4 @@
 ## IMPORTANT
 
 - Refreshing the page while having pokémons in "cought" will cause "cought" pokémons to double because localStorage (size limit) doesn't save "notcought" ones.
-- Catching all pokémons will cause localStorege.clear()
+- Catching all pokémons will cause localStorege.clear().
