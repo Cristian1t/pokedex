@@ -1,43 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import whois from '../../assets/images/whois.png';
+import pball from '../../assets/images/pball.png';
+import { StyledModal } from './style';
 
-const StyledModal = styled.div`
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  position: fixed;
-  left: 0;
-  top: 0;
-  .wrapper {
-    margin: 10rem auto;
-    width: 60%;
-    background: white;
-    color: black;
-    display: grid;
-    grid-template-columns: minmax(100px, auto) 1fr;
-    position: relative;
-    z-index: 10;
-    border-radius: 1rem;
-    .image {
-      padding: 3rem;
-      max-width: 300px;
-      border-radius: 10px 0 0 10px;
-      background: #fffacd;
-    }
-    .description {
-      background: green;
-      text-transform: capitalize;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      color: black;
-    }
-  }
-`;
-
-function Modal({ open, image, name, ability }) {
+function Modal({ open, image, name, ability, captured, type, type2, moves }) {
   return (
     <>
       {open ? (
@@ -50,10 +16,29 @@ function Modal({ open, image, name, ability }) {
             />
             <div className="description">
               <div className="pokemon-name">
-                Name: {name !== undefined ? name : '?'}
+                {name !== undefined ? name : '?'}{' '}
+                {captured ? (
+                  <img className="capturedimg" src={pball} alt="captured" />
+                ) : null}
               </div>
-              <div className="pokemon-name">
+              <div className="pokemon-ability">
                 Ability: {ability !== undefined ? ability : '?'}
+              </div>
+              <div className="pokemon-ability">
+                Type: {type !== undefined ? type : '?'}{' '}
+                {type2 !== undefined ? ` / ${type2}` : null}
+              </div>
+              <div className="moves">
+                <div className="moveslable">Moves:</div>
+                <div>
+                  {moves !== undefined
+                    ? moves
+                        .slice(0, 4)
+                        .map((move, index) => (
+                          <div key={index}> {move.move.name}</div>
+                        ))
+                    : '?'}
+                </div>
               </div>
             </div>
           </div>

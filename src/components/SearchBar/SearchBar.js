@@ -55,12 +55,27 @@ function SearchBar() {
               show={true}
               name={pokemon.name}
               ability={pokemon.abilities[0].ability.name}
+              captured={true}
+              type={pokemon.types[0].type.name}
+              type2={pokemon.types[1]?.type.name}
+              moves={pokemon.moves}
             />
           );
         })}
 
         {filterednotcoughtlist.map((pokemon, index) => {
-          return <Card show={showall} key={index} />;
+          return (
+            <Card
+              show={showall}
+              key={index}
+              name={pokemon.name}
+              image={pokemon.sprites.other.dream_world.front_default}
+              ability={pokemon.abilities[0].ability.name}
+              type={pokemon.types[0].type.name}
+              type2={pokemon.types[1]?.type.name}
+              moves={pokemon.moves}
+            />
+          );
         })}
       </div>
     </StyledSearch>

@@ -31,6 +31,9 @@ function RandomCard() {
             name={getrandom.name}
             show={true}
             ability={getrandom.abilities[0].ability.name}
+            type={getrandom.types[0].type.name}
+            type2={getrandom.types[1]?.type.name}
+            moves={getrandom.moves}
           />
           <button className="catchbutton" onClick={handleCatch}>
             <img src={pball} alt="pokéball" />

@@ -71,9 +71,13 @@ export const StyledCard = styled.div`
       max-width: 150px;
     }
     .cardname {
+      display: flex;
       font-weight: bold;
       text-transform: capitalize;
       :hover {
+      }
+      .capturedimg {
+        max-width: 1.3rem;
       }
     }
   }
