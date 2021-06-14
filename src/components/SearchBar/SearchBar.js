@@ -2,11 +2,12 @@ import React, { useContext, useState } from 'react';
 import Card from '../Card/Card';
 import { CollectionContext } from '../../contexts/CollectionContext';
 import { StyledSearch } from './style';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 function SearchBar() {
   const [search, setSearch] = useState('');
   const { coughtlist, notcoughtlist } = useContext(CollectionContext);
-  const [showall, setShowall] = useState(false);
+  const [showall, setShowall] = useLocalStorage('unlockall', false);
 
   const handleClick = () => {
     setShowall(!showall);
@@ -30,6 +31,11 @@ function SearchBar() {
     return false;
   });
 
+  const handleReload = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
   return (
     <StyledSearch>
       <div className="topcollection">
@@ -43,6 +49,9 @@ function SearchBar() {
         />
         <button className="unlockbutton" onClick={handleClick}>
           Unlock all
+        </button>
+        <button className="reload" onClick={handleReload}>
+          Restart ↺
         </button>
       </div>
 
