@@ -48,6 +48,17 @@ export const StyledRandomCard = styled.div`
       }
     }
   }
+  .congrats {
+    padding-top: 5rem;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .masterimg {
+      max-width: 500px;
+      padding-top: 2rem;
+    }
+  }
 `;
 
 export const StyledCard = styled.div`
