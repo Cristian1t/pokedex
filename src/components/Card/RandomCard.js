@@ -6,20 +6,20 @@ import { StyledRandomCard } from './style';
 import master from '../../assets/images/master.jpg';
 
 function RandomCard() {
-  const { notcoughtlist, coughtlist, setCoughtlist, getrandom, setGetRandom } =
+  const { notcaughtlist, caughtlist, setCaughtlist, getrandom, setGetRandom } =
     useContext(CollectionContext);
 
   const handleClick = () => {
     setGetRandom(
-      notcoughtlist.splice(
-        Math.floor(Math.random() * notcoughtlist.length),
+      notcaughtlist.splice(
+        Math.floor(Math.random() * notcaughtlist.length),
         1
       )[0]
     );
   };
 
   const handleCatch = () => {
-    setCoughtlist([...coughtlist, getrandom]);
+    setCaughtlist([...caughtlist, getrandom]);
     handleClick();
   };
 

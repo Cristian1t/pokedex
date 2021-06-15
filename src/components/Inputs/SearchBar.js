@@ -2,18 +2,17 @@ import React, { useContext, useState } from 'react';
 import Card from '../Card/Card';
 import { CollectionContext } from '../../contexts/CollectionContext';
 import { StyledSearch } from './style';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import UnlockAll from '../Buttons/UnlockAll';
+import Restart from '../Buttons/Restart';
+import FilterRadio from './FilterRadio';
+import Pnumber from './Pnumber';
 
 function SearchBar() {
   const [search, setSearch] = useState('');
-  const { coughtlist, notcoughtlist } = useContext(CollectionContext);
-  const [showall, setShowall] = useLocalStorage('unlockall', false);
+  const { caughtlist, notcaughtlist, showall, hideclass } =
+    useContext(CollectionContext);
 
-  const handleClick = () => {
-    setShowall(!showall);
-  };
-
-  const filteredcoughtlist = coughtlist.filter((val) => {
+  const filteredcaughtlist = caughtlist.filter((val) => {
     if (search === '') {
       return val;
     } else if (val.name.includes(search)) {
@@ -22,7 +21,7 @@ function SearchBar() {
     return false;
   });
 
-  const filterednotcoughtlist = notcoughtlist.filter((val) => {
+  const filterednotcaughtlist = notcaughtlist.filter((val) => {
     if (search === '') {
       return val;
     } else if (val.name.includes(search)) {
@@ -30,11 +29,6 @@ function SearchBar() {
     }
     return false;
   });
-
-  const handleReload = () => {
-    localStorage.clear();
-    window.location.reload();
-  };
 
   return (
     <StyledSearch>
@@ -47,18 +41,18 @@ function SearchBar() {
             setSearch(event.target.value);
           }}
         />
-        <button className="unlockbutton" onClick={handleClick}>
-          Unlock all
-        </button>
-        <button className="reload" onClick={handleReload}>
-          Restart ↺
-        </button>
+        <UnlockAll />
+        <Restart />
       </div>
-
+      <div className="middlecollection">
+        <FilterRadio />
+        <Pnumber />
+      </div>
       <div className="botcollection">
-        {filteredcoughtlist.map((pokemon, index) => {
+        {filteredcaughtlist.map((pokemon, index) => {
           return (
             <Card
+              hideclass={hideclass === 'hidecaught' ? 'hidden' : null}
               key={index}
               image={pokemon.sprites.other.dream_world.front_default}
               show={true}
@@ -72,9 +66,10 @@ function SearchBar() {
           );
         })}
 
-        {filterednotcoughtlist.map((pokemon, index) => {
+        {filterednotcaughtlist.map((pokemon, index) => {
           return (
             <Card
+              hideclass={hideclass === 'hidenotcaught' ? 'hidden' : null}
               show={showall}
               key={index}
               name={pokemon.name}
