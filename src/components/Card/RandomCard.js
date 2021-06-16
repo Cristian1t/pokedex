@@ -52,7 +52,7 @@ function RandomCard() {
         )
       ) : (
         <div className="congrats">
-          Congrats, you cought them all!
+          Congrats, you caught them all!
           <img className="masterimg" src={master} alt="masterimg" />
         </div>
       )}
