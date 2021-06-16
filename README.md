@@ -8,7 +8,7 @@
   - In Collection page, you can see all the caught pokémons displayed with pokéball icon, while not caught ones are hidden.
   - Using the serchbar, you can filter based on name.
   - Click on show all to see all the pokémons.
-  - Click restart to restart from 29 pokémons and 0 caught.
+  - Click restart to start from 29 pokémons and 0 caught.
   - You can filter by Caught, Not Caught and All.
   - You can set the number of pokémons. Default is 29.
 
@@ -26,6 +26,6 @@
 
 ## IMPORTANT
 
-- Refreshing the page while having pokémons in "caught" will cause "caught" pokémons to double because localStorage (size limit) doesn't save "notcaught" ones.
+- Refreshing the page while having pokémons in "caught" will cause "notcaught" pokémons to double because localStorage (size limit) doesn't save "notcaught" ones.
 - Catching all pokémons will cause localStorage.clear().
 - localStorage max is 30 captured pokémons.
